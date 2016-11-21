@@ -11,7 +11,7 @@ Akan mencoba tutorial di sini:
 
    Setelah mengikuti tutorial di atas, pencapaian dalam percobaan coding yg berhasil hingga saat ini bisa di lihat di bawah ini:
    
-   ![Tampilan Program Ketika Dijalankan](../screenShootMembuatDatasetVB.png)
+   ![Tampilan Program Ketika Dijalankan](screenShootMembuatDatasetVB.png)
 
 
 
