@@ -16,7 +16,7 @@ Akan mencoba tutorial di sini:
 
    Untuk source code dari program di atas bisa dilihat disini:
    
-   ```
+   ```vb.net
    Imports System
 
    Imports System.Console
