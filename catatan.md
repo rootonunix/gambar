@@ -14,6 +14,63 @@ Akan mencoba tutorial di sini:
    ![Tampilan Program Ketika Dijalankan](screenShootMembuatDatasetVB.png)
 
 
+   Untuk source code dari program di atas bisa dilihat disini:
+   
+   ```
+   Imports System
+
+   Imports System.Console
+
+   Imports System.Data.SqlClient
+
+   Imports System.Data
+
+   Imports System.Data.Odbc
+
+   Public Class Form1
+      Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+         ' Dua Tabel
+
+         Dim table1 As DataTable = New DataTable("pasien")
+
+         table1.Columns.Add("idPasien")
+
+         table1.Columns.Add("namaPasien")
+
+         table1.Rows.Add(1, "Sam")
+
+         table1.Rows.Add(2, "Mark")
+
+
+         Dim table2 As DataTable = New DataTable("Obat")
+
+         table2.Columns.Add("idObat")
+
+         table2.Columns.Add("namaObat")
+
+         table2.Rows.Add(1, "atenolol")
+
+         table2.Rows.Add(2, "amoxilin")
+
+
+         ' Membuat sebuah Dataset, dan meletakan kedua tabel di dalam dataset itu.
+
+         Dim set1 As DataSet = New DataSet("office")
+
+         set1.Tables.Add(table1)
+
+         set1.Tables.Add(table2)
+
+
+         ' Visualize DataSet
+
+         Console.WriteLine(set1.GetXml())
+
+      End Sub
+   End Class
+   
+   ```
 
 _XML_ dan _JSON_ sangat penting dalam urusan _web service_, kedua type file ini wajib dikuasai penggunaannya bersama dengan _Visual Basic .Net_ dan _C#_ di _Visual Studio_. Untuk membangun web service yang sepertinya mudah dan bisa dikerjakan untuk saat ini adalah dengan menggunakan **WCF** dan **ASP .NET** . Untuk web server nya menggunakan _IIS (Internet Information Service)_ yang versi **Express** .
 
