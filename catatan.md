@@ -85,6 +85,63 @@ Akan mencoba tutorial di sini:
    Di bawah ini screen shoot dari tampilan isi file XML yang berhasil dibuat:
    
    ![Isi file XML ditampilkan di Notepad++](screenShootXMLData1.png)
+   
+   Untuk source code dari program yg bisa menyimpan Dataset yang telah dibuat ke dalam file XML, bisa dilihat di bawah ini:
+   
+   ```vb.net
+   Imports System
+
+   Imports System.Console
+
+   Imports System.Data.SqlClient
+
+   Imports System.Data
+
+   Imports System.Data.Odbc
+
+
+
+   Public Class Form2
+      Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+         ' Dua Tabel
+
+         Dim tabel1 As DataTable = New DataTable("pasien")
+
+         tabel1.Columns.Add("idPasien")
+
+         tabel1.Columns.Add("namaPasien")
+
+         tabel1.Rows.Add(1, "Sam")
+
+         tabel1.Rows.Add(2, "Mark")
+
+
+         Dim tabel2 As DataTable = New DataTable("obat")
+
+         tabel2.Columns.Add("idObat")
+
+         tabel2.Columns.Add("namaObat")
+
+         tabel2.Rows.Add(1, "atenolol")
+
+         tabel2.Rows.Add(2, "amoxilin")
+
+
+         Dim set1 As DataSet = New DataSet("office")
+
+         set1.Tables.Add(tabel1)
+
+         set1.Tables.Add(tabel2)
+
+
+         set1.WriteXml("D:\StevenNathaniel\Proyek VB NET\DevExpress7\DevExpress7\data1.xml")
+
+
+      End Sub
+   End Class
+   
+   ```
 
 _XML_ dan _JSON_ sangat penting dalam urusan _web service_, kedua type file ini wajib dikuasai penggunaannya bersama dengan _Visual Basic .Net_ dan _C#_ di _Visual Studio_. Untuk membangun web service yang sepertinya mudah dan bisa dikerjakan untuk saat ini adalah dengan menggunakan **WCF** dan **ASP .NET** . Untuk web server nya menggunakan _IIS (Internet Information Service)_ yang versi **Express** .
 
