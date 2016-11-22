@@ -155,6 +155,12 @@ Menemukan halaman ini:
 
 jadi harus belajar tentang **LINQ**, mencoba memahirkan penggunaan LINQ di file **XML**. sambil juga  mencoba untuk menerapkan XML yg sudah ada di **DevExpress Report** . 
 
+_Ada tutorial tentang membuat file XML dari scratch:_
+
+[Creating XML from Scratch](https://msdn.microsoft.com/en-us/library/bb308960.aspx#xlinqoverview_topic2e)
+
+
+
 _XML_ dan _JSON_ sangat penting dalam urusan _web service_, kedua type file ini wajib dikuasai penggunaannya bersama dengan _Visual Basic .Net_ dan _C#_ di _Visual Studio_. Untuk membangun web service yang sepertinya mudah dan bisa dikerjakan untuk saat ini adalah dengan menggunakan **WCF** dan **ASP .NET** . Untuk web server nya menggunakan _IIS (Internet Information Service)_ yang versi **Express** .
 
 
