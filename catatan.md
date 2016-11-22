@@ -164,6 +164,82 @@ _Tutorial tentang membuat file XML menggunakan LINQ tapi masih tanpa ada source 
 
 [LINQ to XML : Creating complete XML document](https://blogs.msdn.microsoft.com/wriju/2008/02/28/linq-to-xml-creating-complete-xml-document/)
 
+sudah berhasil melakukan **query** terhadap file XML menggunakan **LINQ** dengan mengikuti tutorial di sini:
+
+[LINQ to XML in VB.NET](http://stackoverflow.com/questions/1066213/linq-to-xml-in-vb-net/1066418#1066418)
+
+**Source code yang di uji cobakan di Visual Studio 2015:**
+
+```vb.net
+Imports System
+
+Imports System.Console
+
+Imports System.Data.SqlClient
+
+Imports System.Data
+
+Imports System.Data.Odbc
+
+
+Module fileXML
+
+    Dim data1Xml = <Xml>
+                       <office>
+                           <pasien>
+                               <idPasien>1</idPasien>
+                               <namaPasien>Sam</namaPasien>
+                           </pasien>
+                           <pasien>
+                               <idPasien>2</idPasien>
+                               <namaPasien>Mark</namaPasien>
+                           </pasien>
+                           <obat>
+                               <idObat>1</idObat>
+                               <namaObat>atenolol</namaObat>
+                           </obat>
+                           <obat>
+                               <idObat>2</idObat>
+                               <namaObat>amoxilin</namaObat>
+                           </obat>
+                       </office>
+                   </Xml>
+
+    Sub xmlKueri()
+
+        Dim data1Doc = System.Xml.Linq.XDocument.Parse(data1Xml.ToString())
+
+        Dim obats = From obat In data1Doc...<obat> Select obat
+
+
+        For Each obat In obats
+
+            Console.WriteLine("ID obat {0}", obat.<idObat>.Value)
+
+            Console.WriteLine("Nama obat {0}", obat.<namaObat>.Value)
+        Next
+
+    End Sub
+
+
+
+
+End Module
+
+Public Class Form3
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+
+        Call xmlKueri()
+
+
+    End Sub
+End Class
+```
+
+
+
 _XML_ dan _JSON_ sangat penting dalam urusan _web service_, kedua type file ini wajib dikuasai penggunaannya bersama dengan _Visual Basic .Net_ dan _C#_ di _Visual Studio_. Untuk membangun web service yang sepertinya mudah dan bisa dikerjakan untuk saat ini adalah dengan menggunakan **WCF** dan **ASP .NET** . Untuk web server nya menggunakan _IIS (Internet Information Service)_ yang versi **Express** .
 
 
