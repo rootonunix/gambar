@@ -238,7 +238,108 @@ Public Class Form3
 End Class
 ```
 
+sekarang sudah berhasil membuat query menggunakan **LINQ** untuk menampilkan data dari file XML yg merupakan _hasil generate dari server MySQL_. Source code nya bisa dilihat di bawah ini:
 
+```vb.net
+Imports System
+
+Imports System.Console
+
+Imports System.Data.SqlClient
+
+Imports System.Data
+
+Imports System.Data.Odbc
+
+
+
+Module fileXML2
+
+    Dim data2XML = <?xml version="1.0" standalone="yes"?>
+                   <NewDataSet>
+                       <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+                           <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+                               <xs:complexType>
+                                   <xs:choice minOccurs="0" maxOccurs="unbounded">
+                                       <xs:element name="Table">
+                                           <xs:complexType>
+                                               <xs:sequence>
+                                                   <xs:element name="idpegawai" type="xs:string" minOccurs="0"/>
+                                                   <xs:element name="namapegawai" type="xs:string" minOccurs="0"/>
+                                                   <xs:element name="alamat" type="xs:string" minOccurs="0"/>
+                                               </xs:sequence>
+                                           </xs:complexType>
+                                       </xs:element>
+                                   </xs:choice>
+                               </xs:complexType>
+                           </xs:element>
+                       </xs:schema>
+                       <Table>
+                           <idpegawai>PG00001</idpegawai>
+                           <namapegawai>Steven Nathaniel</namapegawai>
+                           <alamat>Pasar Baru</alamat>
+                       </Table>
+                       <Table>
+                           <idpegawai>PG00002</idpegawai>
+                           <namapegawai>Steve Jobs</namapegawai>
+                           <alamat>Klandasan</alamat>
+                       </Table>
+                       <Table>
+                           <idpegawai>PG00004</idpegawai>
+                           <namapegawai>Yulia</namapegawai>
+                           <alamat>Kampung Baru</alamat>
+                       </Table>
+                       <Table>
+                           <idpegawai>PG00005</idpegawai>
+                           <namapegawai>Maria</namapegawai>
+                           <alamat>Klandasan</alamat>
+                       </Table>
+                       <Table>
+                           <idpegawai>PG00007</idpegawai>
+                           <namapegawai>Budi</namapegawai>
+                           <alamat>Komplek Wika</alamat>
+                       </Table>
+                       <Table>
+                           <idpegawai>PG00008</idpegawai>
+                           <namapegawai>Ahmad</namapegawai>
+                           <alamat>BDS</alamat>
+                       </Table>
+                   </NewDataSet>
+
+
+    Sub xmlQueri2()
+
+        Dim data2DOC = System.Xml.Linq.XDocument.Parse(data2XML.ToString())
+
+        Dim Tables = From Table In data2DOC...<Table> Select Table
+
+        For Each Table In Tables
+
+            Console.WriteLine("ID Pegawai{0}", Table.<idpegawai>.Value)
+
+            Console.WriteLine("Nama Pegawai{0}", Table.<namapegawai>.Value)
+
+            Console.WriteLine("Alamat Pegawai{0}", Table.<alamat>.Value)
+
+
+        Next
+
+
+
+
+    End Sub
+
+End Module
+
+Public Class Form4
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+        Call xmlQueri2()
+
+    End Sub
+End Class
+
+```
 
 _XML_ dan _JSON_ sangat penting dalam urusan _web service_, kedua type file ini wajib dikuasai penggunaannya bersama dengan _Visual Basic .Net_ dan _C#_ di _Visual Studio_. Untuk membangun web service yang sepertinya mudah dan bisa dikerjakan untuk saat ini adalah dengan menggunakan **WCF** dan **ASP .NET** . Untuk web server nya menggunakan _IIS (Internet Information Service)_ yang versi **Express** .
 
