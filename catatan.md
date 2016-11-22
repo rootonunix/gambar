@@ -142,7 +142,7 @@ Akan mencoba tutorial di sini:
    End Class
    
    ```
-   
+   File yang berhasil dibuat dari program diatas, bisa dilihat [**disini**](https://github.com/rootonunix/gambar/blob/master/data1.xml)
 ## Query File XML
 
 Selanjutnya akan mencoba melakukan query terhadap file XML , untuk menampilkan column dan data tertentu. Mencoba mencari info dengan kata kunci:
