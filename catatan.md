@@ -340,6 +340,8 @@ Public Class Form4
 End Class
 
 ```
+Dalam contoh-contoh di atas, data XML nya masih dimasukan ke dalam module, _akan mencoba yang data XML nya di load dari file XML_.
+
 
 _XML_ dan _JSON_ sangat penting dalam urusan _web service_, kedua type file ini wajib dikuasai penggunaannya bersama dengan _Visual Basic .Net_ dan _C#_ di _Visual Studio_. Untuk membangun web service yang sepertinya mudah dan bisa dikerjakan untuk saat ini adalah dengan menggunakan **WCF** dan **ASP .NET** . Untuk web server nya menggunakan _IIS (Internet Information Service)_ yang versi **Express** .
 
