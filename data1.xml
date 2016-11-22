@@ -1,0 +1,19 @@
+<?xml version="1.0" standalone="yes"?>
+<office>
+  <pasien>
+    <idPasien>1</idPasien>
+    <namaPasien>Sam</namaPasien>
+  </pasien>
+  <pasien>
+    <idPasien>2</idPasien>
+    <namaPasien>Mark</namaPasien>
+  </pasien>
+  <obat>
+    <idObat>1</idObat>
+    <namaObat>atenolol</namaObat>
+  </obat>
+  <obat>
+    <idObat>2</idObat>
+    <namaObat>amoxilin</namaObat>
+  </obat>
+</office>
