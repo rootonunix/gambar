@@ -460,6 +460,51 @@ Public Class Form7
 End Class
 ```
 
+Source code untuk menyusun hasil query yang menampilkan data-data dari file XML ke dalam bentuk tabel di console:
+
+```vb.net
+Imports System
+
+Imports System.Linq
+
+Imports System.Console
+
+Imports System.Data.SqlClient
+
+Imports System.Data
+
+Imports System.Xml
+
+
+Public Class Form10
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+        Dim xmlDataSet As New DataSet()
+
+        xmlDataSet.ReadXml("D:\StevenNathaniel\Proyek VB NET\DevExpress7\DevExpress7\datasetPegawai.xml")
+
+        Dim data2Doc = System.Xml.Linq.XDocument.Parse(xmlDataSet.GetXml)
+
+        Dim Tables = From Table In data2Doc...<Table> Select Table
+
+        Console.WriteLine("{0, -15} {1, -20} {2, -5}", "ID Pegawai", "Nama Pegawai", "Alamat")
+
+        For Each Table In Tables
+
+
+            Console.WriteLine("{0, -15} {1, -20} {2, -5}", Table.<idpegawai>.Value, Table.<namapegawai>.Value, Table.<alamat>.Value)
+
+
+
+        Next
+
+        Console.ReadKey()
+
+
+    End Sub
+End Class
+```
+
 _XML_ dan _JSON_ sangat penting dalam urusan _web service_, kedua type file ini wajib dikuasai penggunaannya bersama dengan _Visual Basic .Net_ dan _C#_ di _Visual Studio_. Untuk membangun web service yang sepertinya mudah dan bisa dikerjakan untuk saat ini adalah dengan menggunakan **WCF** dan **ASP .NET** . Untuk web server nya menggunakan _IIS (Internet Information Service)_ yang versi **Express** .
 
 
