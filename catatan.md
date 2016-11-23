@@ -414,6 +414,51 @@ Public Class Form7
 End Class
 ```
 
+Format tampilan cetak data ke console nya sudah diperbaiki dari source code diatas, sehingga tampilan data di console nya lebih rapi dan mudah di baca. Source code penyempurnaannya seperti di bawah ini:
+
+```vb.net
+Imports System
+
+Imports System.Linq
+
+Imports System.Console
+
+Imports System.Data.SqlClient
+
+Imports System.Data
+
+Imports System.Xml
+
+Public Class Form7
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+        Dim xmlDataSet As New DataSet()
+
+        xmlDataSet.ReadXml("D:\StevenNathaniel\Proyek VB NET\DevExpress7\DevExpress7\datasetPegawai.xml")
+
+        Console.WriteLine(xmlDataSet.GetXml)
+
+
+        Dim data2Doc = System.Xml.Linq.XDocument.Parse(xmlDataSet.GetXml)
+
+        Dim Tables = From Table In data2Doc...<Table> Select Table
+
+        For Each Table In Tables
+
+            Console.WriteLine("ID Pegawai {0} : {1}", Chr(9), Table.<idpegawai>.Value)
+
+            Console.WriteLine("Nama Pegawai {0} : {1}", Chr(9), Table.<namapegawai>.Value)
+
+            Console.WriteLine("Alamat {0} {1} : {2}", Chr(9), Chr(9), Table.<alamat>.Value)
+
+            Console.WriteLine()
+
+
+        Next
+
+    End Sub
+End Class
+```
 
 _XML_ dan _JSON_ sangat penting dalam urusan _web service_, kedua type file ini wajib dikuasai penggunaannya bersama dengan _Visual Basic .Net_ dan _C#_ di _Visual Studio_. Untuk membangun web service yang sepertinya mudah dan bisa dikerjakan untuk saat ini adalah dengan menggunakan **WCF** dan **ASP .NET** . Untuk web server nya menggunakan _IIS (Internet Information Service)_ yang versi **Express** .
 
