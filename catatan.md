@@ -371,6 +371,49 @@ End Class
 
 hasil tampilan dari source code diatas berupa **layout XML** yang dimulai dan diakhiri dengan tag **Dataset**.
 
+Source code berikut ini berhasil melakukan query data dari file **XML**, jadi dari source code di atas dimasukan data XML yg berhasil di dapatkan ke dalam query **LINQ** dan ditampilkan hasil query nya di console. Jadi data yang ditampilkan tidak lagi berwujud XML:
+
+```vb.net
+Imports System
+
+Imports System.Linq
+
+Imports System.Console
+
+Imports System.Data.SqlClient
+
+Imports System.Data
+
+Imports System.Xml
+
+Public Class Form7
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+        Dim xmlDataSet As New DataSet()
+
+        xmlDataSet.ReadXml("D:\StevenNathaniel\Proyek VB NET\DevExpress7\DevExpress7\datasetPegawai.xml")
+
+        Console.WriteLine(xmlDataSet.GetXml)
+
+
+        Dim data2Doc = System.Xml.Linq.XDocument.Parse(xmlDataSet.GetXml)
+
+        Dim Tables = From Table In data2Doc...<Table> Select Table
+
+        For Each Table In Tables
+
+            Console.WriteLine("ID Pegawai {0}", Table.<idpegawai>.Value)
+
+            Console.WriteLine("Nama Pegawai {0}", Table.<namapegawai>.Value)
+
+            Console.WriteLine("Alamat {0}", Table.<alamat>.Value)
+
+        Next
+
+    End Sub
+End Class
+```
+
 
 _XML_ dan _JSON_ sangat penting dalam urusan _web service_, kedua type file ini wajib dikuasai penggunaannya bersama dengan _Visual Basic .Net_ dan _C#_ di _Visual Studio_. Untuk membangun web service yang sepertinya mudah dan bisa dikerjakan untuk saat ini adalah dengan menggunakan **WCF** dan **ASP .NET** . Untuk web server nya menggunakan _IIS (Internet Information Service)_ yang versi **Express** .
 
