@@ -342,6 +342,38 @@ End Class
 ```
 Dalam contoh-contoh di atas, data XML nya masih dimasukan ke dalam module, _akan mencoba yang data XML nya di load dari file XML_.
 
+Berikut ini contoh source code yang berhasil meload data dari file XML dan menampilkannya di console:
+
+```vb.net
+Imports System
+
+Imports System.Console
+
+Imports System.Data.SqlClient
+
+Imports System.Data
+
+Imports System.Xml
+
+
+Public Class Form6
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+        Dim xmlDataSet As New DataSet()
+
+        xmlDataSet.ReadXml("D:\StevenNathaniel\Proyek VB NET\DevExpress7\DevExpress7\datasetPegawai.xml")
+
+        Console.WriteLine(xmlDataSet.GetXml())
+
+
+
+
+    End Sub
+End Class
+```
+
+
+
 
 _XML_ dan _JSON_ sangat penting dalam urusan _web service_, kedua type file ini wajib dikuasai penggunaannya bersama dengan _Visual Basic .Net_ dan _C#_ di _Visual Studio_. Untuk membangun web service yang sepertinya mudah dan bisa dikerjakan untuk saat ini adalah dengan menggunakan **WCF** dan **ASP .NET** . Untuk web server nya menggunakan _IIS (Internet Information Service)_ yang versi **Express** .
 
