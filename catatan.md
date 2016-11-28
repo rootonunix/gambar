@@ -514,5 +514,139 @@ Nantinya web service ini berguna untuk komunikasi data antara aplikasi **desktop
 ## Keberhasilan Membuat Fitur untuk Search Data dari Server MySQL dan Kemudian Simpan Data Ke Dalam File XML, Untuk Kemudian Di Buat Report, Bisa Preview Report atau Langsung Simpan Report ke Dalam Bentuk File PDF
 
 
+Source code nya:
 
+```vb.net
+Imports Microsoft.VisualBasic
+
+Imports System
+
+Imports System.Linq
+
+Imports System.Console
+
+Imports System.Data.SqlClient
+
+Imports System.Data
+
+Imports System.Data.Odbc
+
+Imports System.Xml
+
+Imports System.Drawing
+
+Imports System.Drawing.Printing
+
+Imports System.Windows.Forms
+
+Imports DevExpress.XtraReports.UI
+
+Imports DevExpress.Data
+
+Imports DevExpress.DataAccess
+
+Imports DevExpress.DataAccess.ObjectBinding
+
+Imports DevExpress.DataAccess.Sql
+
+Imports DevExpress.Data.Linq
+
+Imports DevExpress.DataAccess.ConnectionParameters
+
+Imports System.Collections.Generic
+
+
+
+Module TulisFileXML2
+
+    'Dim koneksi As New OdbcConnection("DSN=latihan")
+
+    'Dim perintah As OdbcCommand
+
+    'Dim myData As New DataSet
+
+    'Dim kotakID As String
+
+
+    'Public Sub tulisDataXML()
+
+
+
+    '    Try
+
+
+
+    '        koneksi.Open()
+
+    '        Console.WriteLine("Koneksi Berhasil")
+
+    '        Dim dAdaptar As OdbcDataAdapter = New OdbcDataAdapter()
+    '    Catch ex As Exception
+
+    '    End Try
+    'End Sub
+
+End Module
+
+
+Public Class Form5
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+        Dim koneksi As New OdbcConnection("DSN=latihan")
+
+        Dim perintah As OdbcCommand
+
+        Dim myData As New DataSet
+
+        Dim kotakID As String
+
+
+
+        Try
+
+
+
+            koneksi.Open()
+
+            Console.WriteLine("Koneksi Berhasil")
+
+            ' Dim dAdaptar As OdbcDataAdapter = New OdbcDataAdapter("SELECT * FROM pegawai where idpegawai='PG00001'", koneksi)
+
+            Dim dAdaptar As OdbcDataAdapter = New OdbcDataAdapter("SELECT * FROM pegawai where idpegawai='" + TextBox1.Text + "'", koneksi)
+
+            dAdaptar.Fill(myData)
+
+            myData.WriteXml("D:\StevenNathaniel\Proyek VB NET\DevExpress8\DevExpress8\dataPegawai.xml", XmlWriteMode.WriteSchema)
+
+            Console.WriteLine("Behasil Tulis Data Ke XML")
+
+            koneksi.Close()
+
+
+
+        Catch ex As OdbcException
+
+            Console.WriteLine("Terjadi Error : " & ex.ErrorCode & " - " & ex.Message)
+
+        Finally
+
+            koneksi.Dispose()
+
+
+        End Try
+
+
+        Dim laporan As New XtraReport1()
+
+        'Dim printTool As New ReportPrintTool(laporan)
+
+        'printTool.Report.CreateDocument()
+
+        'printTool.ShowPreviewDialog()
+
+        laporan.ExportToPdf("D:\StevenNathaniel\Proyek VB NET\DevExpress8\DevExpress8\laporan1.pdf")
+
+    End Sub
+End Class
+```
 
