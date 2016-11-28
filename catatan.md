@@ -511,4 +511,8 @@ _XML_ dan _JSON_ sangat penting dalam urusan _web service_, kedua type file ini 
 Nantinya web service ini berguna untuk komunikasi data antara aplikasi **desktop**, **mobile** dengan **server MySQL** . Sehingga untuk interface aplikasi tetap menggunakan aplikasi desktop dan mobile. teknologi web hanya berlaku di backend. web service ini akan memperluas jangkauan dari hanya LAN sehingga bisa mencapai seluruh dunia menggunakan internet.
 
 
+## Keberhasilan Membuat Fitur untuk Search Data dari Server MySQL dan Kemudian Simpan Data Ke Dalam File XML, Untuk Kemudian Di Buat Report, Bisa Preview Report atau Langsung Simpan Report ke Dalam Bentuk File PDF
+
+
+
 
