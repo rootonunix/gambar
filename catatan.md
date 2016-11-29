@@ -650,3 +650,35 @@ Public Class Form5
 End Class
 ```
 
+
+
+**Source code yang shahih untuk membuat file PDF yang berisi 1 halaman PDF:**
+
+```vb.net
+Imports DevExpress.Pdf
+
+Imports System
+
+Imports System.Drawing
+
+Imports System.IO
+
+
+Public Class Form4
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+        'Buat dokumen PDF dengan 1 halaman kosong ukuran letter
+
+        Dim dokumenPDF As New PdfDocumentProcessor
+
+        dokumenPDF.CreateEmptyDocument()
+
+        Dim halamanPDF As PdfPage = dokumenPDF.AddNewPage(PdfPaperSize.Letter)
+
+        dokumenPDF.SaveDocument("C:\Users\StevenNathaniel\AppData\Local\Temp\file5.pdf")
+
+
+    End Sub
+End Class
+```
+
