@@ -682,3 +682,69 @@ Public Class Form4
 End Class
 ```
 
+**Source code yang sudah berhasil untuk membuat file PDF dan menyimpannya menggunakan FileSaveDialog, dengan file name dan file directory masih ditentukan secara manual oleh user:**
+
+```vb.net
+Imports DevExpress.Pdf
+
+Imports System
+
+Imports System.Drawing
+
+Imports System.IO
+
+
+
+
+Public Class Form6
+
+    Dim namafile As String
+
+    Dim alamatFile As String
+
+    Dim dokumenPDF As New PdfDocumentProcessor
+
+    Dim halamanPDF As PdfPage
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+        SaveFileDialog1.ShowDialog()
+
+
+
+    End Sub
+
+    Private Sub SaveFileDialog1_FileOk(sender As Object, e As ComponentModel.CancelEventArgs) Handles SaveFileDialog1.FileOk
+
+        dokumenPDF.CreateEmptyDocument()
+
+        halamanPDF = dokumenPDF.AddNewPage(PdfPaperSize.Letter)
+
+
+        namafile = SaveFileDialog1.FileName
+
+        Console.WriteLine(namafile)
+
+        dokumenPDF.SaveDocument(namafile)
+
+
+    End Sub
+
+    Private Sub Form6_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        SaveFileDialog1.Filter = "pdf file (*.pdf)|*.pdf"
+
+        SaveFileDialog1.DefaultExt = "pdf"
+
+        SaveFileDialog1.InitialDirectory = "C:\Users\StevenNathaniel\AppData\Local\Temp"
+
+        'Dim dokumenPDF As New PdfDocumentProcessor
+
+        'dokumenPDF.CreateEmptyDocument()
+
+        'halamanPDF = dokumenPDF.AddNewPage(PdfPaperSize.Letter)
+
+    End Sub
+End Class
+```
+
+
