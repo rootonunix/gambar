@@ -748,3 +748,150 @@ End Class
 ```
 
 
+**Source code yang sudah berhasil untuk membuat file XML dan menyimpannya menggunakan FileSaveDialog, dengan file name dan file directory masih ditentukan secara manual oleh user:**
+
+```vb.net
+Imports System.Console
+
+Imports System.IO
+
+Imports System.Data.SqlClient
+
+Imports System.Data
+
+Imports System.Data.Odbc
+
+Imports System.Xml
+
+Imports System.Drawing
+
+Imports System.Drawing.Printing
+
+Imports System.Windows.Forms
+
+Imports DevExpress.XtraReports.UI
+
+Imports DevExpress.Data
+
+Imports DevExpress.DataAccess
+
+Imports DevExpress.DataAccess.ObjectBinding
+
+Imports DevExpress.DataAccess.Sql
+
+Imports DevExpress.Data.Linq
+
+Imports DevExpress.DataAccess.ConnectionParameters
+
+Imports System.Collections.Generic
+
+
+
+Public Class Form2
+
+    Dim koneksi As New OdbcConnection("DSN=latihan")
+
+    Dim perintah As New OdbcCommand
+
+    Dim myData As New DataSet
+
+    Dim kotakID As String
+
+    Dim xmlDataSet As New DataSet
+
+    Dim path As String = My.Application.Info.DirectoryPath
+
+    Dim namaFile As String
+
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+        Try
+
+            Dim dAdapter As OdbcDataAdapter = New OdbcDataAdapter("SELECT * FROM pegawai WHERE idpegawai='" + TextBox1.Text + "'", koneksi)
+
+            dAdapter.Fill(myData)
+
+            SaveFileDialog1.ShowDialog()
+
+
+
+        Catch ex As Exception
+
+        End Try
+
+
+
+    End Sub
+
+    Private Sub Form2_Load(sender As Object, e As EventArgs) Handles Me.Load
+
+        SaveFileDialog1.Filter = "XML File(*.xml)|*.xml"
+
+        SaveFileDialog1.DefaultExt = "xml"
+
+        SaveFileDialog1.InitialDirectory = "C:\Users\StevenNathaniel\AppData\Local\Temp"
+
+        Try
+
+            koneksi.Open()
+
+            Console.WriteLine("Koneksi Berhasil")
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
+    Private Sub SaveFileDialog1_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles SaveFileDialog1.FileOk
+
+        namaFile = SaveFileDialog1.FileName
+
+        Console.WriteLine(namaFile)
+
+        Console.WriteLine()
+
+        myData.WriteXml(namaFile, XmlWriteMode.WriteSchema)
+
+        Console.WriteLine("Berhasil Tulis Data XML")
+
+        Console.WriteLine()
+
+        Console.WriteLine("Tampilan Isi File XML:")
+
+        Console.WriteLine()
+
+        Console.WriteLine(myData.GetXml)
+
+        Console.WriteLine()
+
+        Console.WriteLine("Data yang ditulis dalam file XML:")
+
+        Console.WriteLine()
+
+
+        ' Tampilkan data dalam format tabel sederhana
+
+        Dim data2Doc = System.Xml.Linq.XDocument.Parse(myData.GetXml)
+
+        Dim Tables = From Table In data2Doc...<Table> Select Table
+
+        Console.WriteLine("{0, -15} {1, -20} {2, -5}", "ID Pegawai", "Nama Pegawai", "Alamat")
+
+        For Each Table In Tables
+
+            Console.WriteLine("{0, -15} {1, -20} {2, 5}", Table.<idpegawai>.Value, Table.<namapegawai>.Value, Table.<alamat>.Value)
+
+            Console.WriteLine()
+
+        Next
+
+        koneksi.Close()
+
+        koneksi.Dispose()
+
+    End Sub
+End Class
+```
+
+
