@@ -894,4 +894,97 @@ Public Class Form2
 End Class
 ```
 
+**Source code untuk menyimpan file PDF hasil dari report yg dikonversi ke file PDF. Pembuatan program ini melibatkan DevExpress:**
+```vb.net
+Imports System.Console
+
+Imports DevExpress.Pdf
+
+Imports System
+
+Imports System.IO
+
+Imports System.Data.SqlClient
+
+Imports System.Data
+
+Imports System.Data.Odbc
+
+Imports System.Xml
+
+Imports System.Drawing
+
+Imports System.Drawing.Printing
+
+Imports System.Windows.Forms
+
+Imports DevExpress.XtraReports.UI
+
+Imports DevExpress.Data
+
+Imports DevExpress.DataAccess
+
+Imports DevExpress.DataAccess.ObjectBinding
+
+Imports DevExpress.DataAccess.Sql
+
+Imports DevExpress.Data.Linq
+
+Imports DevExpress.DataAccess.ConnectionParameters
+
+Imports System.Collections.Generic
+
+
+
+Public Class Form3
+
+    Dim namaFile As String
+
+    'Dim laporan As New XtraReport1()
+
+    'Dim printTool As New ReportPrintTool(laporan)
+
+
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+        Dim laporan As New XtraReport1
+
+        Dim printTool As New ReportPrintTool(laporan)
+
+        printTool.Report.CreateDocument()
+
+        printTool.ShowPreviewDialog()
+
+
+        SaveFileDialog1.ShowDialog()
+
+
+    End Sub
+
+    Private Sub Form3_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        'Dim laporan As New XtraReport1()
+
+        SaveFileDialog1.Filter = "PDF File(*.pdf)|*.pdf"
+
+        SaveFileDialog1.DefaultExt = "pdf"
+
+        SaveFileDialog1.InitialDirectory = "C:\Users\StevenNathaniel\AppData\Local\Temp"
+
+    End Sub
+
+    Private Sub SaveFileDialog1_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles SaveFileDialog1.FileOk
+
+        Dim laporan As New XtraReport1()
+
+
+        namaFile = SaveFileDialog1.FileName
+
+        laporan.ExportToPdf(namaFile)
+
+
+    End Sub
+End Class
+```
 
