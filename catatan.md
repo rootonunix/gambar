@@ -1085,3 +1085,61 @@ Public Class Form9
     End Sub
 End Class
 ```
+
+
+**Source code yang Metode bikin file yg namanya sesuai dengan masing-masing ID Pegawai dan isi masing masing file nya sesuai dengan nama file nya:**
+
+```vb.net
+Imports System
+
+Imports System.IO
+
+Imports System.Data.SqlClient
+
+Imports System.Data.Odbc
+
+Imports System.Xml
+
+
+
+Public Class Form12
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+        Dim koneksi As New OdbcConnection("DSN=latihan")
+
+        Dim perintah As New OdbcCommand
+
+        Dim kumpulanData As New DataSet
+
+        Dim kumpulanNamaFile() As String = {"PG00001", "PG00002", "PG00004"}
+
+        Dim kumpulanIdPegawai() As String = {"PG00001", "PG00002", "PG00004"}
+
+        Dim lokasiFile As String
+
+        lokasiFile = "C:\Users\StevenNathaniel\AppData\Local\Temp"
+
+        For Each idPegawai As String In kumpulanIdPegawai
+
+            'For Each namaFile As String In kumpulanNamaFile
+
+            Dim dAdapter As OdbcDataAdapter = New OdbcDataAdapter("SELECT * FROM pegawai WHERE idpegawai='" + idPegawai + "'", koneksi)
+
+                dAdapter.Fill(kumpulanData)
+
+            kumpulanData.WriteXml(lokasiFile & "\" & idPegawai & ".xml", XmlWriteMode.WriteSchema)
+
+            kumpulanData.Clear()
+
+
+            ' Metode bikin file yg namanya sesuai dengan masing-masing ID Pegawai dan isi masing masing file nya sesuai dengan nama file nya
+
+
+            'Next
+        Next
+
+
+    End Sub
+End Class
+```
+
