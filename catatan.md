@@ -988,3 +988,100 @@ Public Class Form3
 End Class
 ```
 
+**Source code untuk membuat file-file XML menggunakan Looping berdasarkan pada id id yang ada di tabel MYSQL:**
+
+```vb.net
+Imports System.Console
+
+Imports System
+
+Imports System.IO
+
+Imports System.Data.SqlClient
+
+Imports System.Data.Odbc
+
+Imports System.Xml
+
+
+
+
+Public Class Form9
+
+    Dim koneksi As New OdbcConnection("DSN=latihan")
+
+    Dim perintah As New OdbcCommand
+
+    Dim myData As New DataSet
+
+    Dim xmlDataSet As New DataSet
+
+    Dim namaFile As String
+
+    Dim idPegawai As String
+
+    Dim path As String
+
+
+
+    Private Sub Form9_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Try
+
+            Dim dAdapter As OdbcDataAdapter = New OdbcDataAdapter("SELECT * FROM Pegawai", koneksi)
+
+            dAdapter.Fill(myData)
+
+            For i As Integer = 0 To myData.Tables(0).Rows.Count - 1
+
+                idPegawai = myData.Tables(0).Rows(i)(0).ToString
+
+                Console.WriteLine(idPegawai)
+            Next
+
+        Catch ex As Exception
+
+        End Try
+
+
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+        path = "C:\Users\StevenNathaniel\AppData\Local\Temp"
+
+        'Dim i As Integer
+
+
+        'For Each i In idPegawai
+
+        '    File.Create(path & "\" & idPegawai & ".txt")
+
+        'Next
+
+
+        Try
+
+            Dim dAdapter As OdbcDataAdapter = New OdbcDataAdapter("SELECT * FROM Pegawai", koneksi)
+
+            dAdapter.Fill(myData)
+
+            For i As Integer = 0 To myData.Tables(0).Rows.Count - 1
+
+                idPegawai = myData.Tables(0).Rows(i)(0).ToString
+
+                File.Create(path & "\" & idPegawai & ".txt")
+
+            Next
+
+        Catch ex As Exception
+
+        End Try
+
+
+
+
+
+    End Sub
+End Class
+```
