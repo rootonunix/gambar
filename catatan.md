@@ -1143,3 +1143,92 @@ Public Class Form12
 End Class
 ```
 
+**Source code yang Metode bikin file yg namanya sesuai dengan masing-masing ID Pegawai dan isi masing masing file nya sesuai dengan nama file nya. Mirip seperti source code di atas, tapi yg ini tidak memerlukan _Array_ & tidak memakai For ... Each ... Next , yang ini cuma memakai For ... Next. Yang terpenting adalah selalu ingat untuk menghapus memori _Dataset_ setiap kali selesai menulis sebuah file:**
+
+```vb.net
+Imports System.Console
+
+Imports System
+
+Imports System.IO
+
+Imports System.Data.SqlClient
+
+Imports System.Data.Odbc
+
+Imports System.Xml
+
+Public Class Form10
+
+    Dim koneksi As New OdbcConnection("DSN=latihan")
+
+    Dim perintas As New OdbcCommand
+
+    Dim myData1 As New DataSet
+
+    Dim myData2 As New DataSet
+
+    Dim xmlDataSet As New DataSet
+
+    Dim namaFile As String
+
+    Dim idPegawai1 As String
+
+    Dim idpegawai2 As String
+
+
+    Dim path As String
+
+    Private Sub Form10_Load(sender As Object, e As EventArgs) Handles Me.Load
+
+        'Try
+
+        '    Dim dAdapter As OdbcDataAdapter = New OdbcDataAdapter("SELECT * FROM Pegawai", koneksi)
+
+        '    dAdapter.Fill(myData)
+
+        '    For i As Integer = 0 To myData.Tables(0).Rows.Count - 1
+
+        '        idPegawai = myData.Tables(0).Rows(i)(0).ToString
+
+        '        Console.WriteLine(idPegawai)
+
+        '    Next
+        'Catch ex As Exception
+
+        'End Try
+
+
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+        path = "C:\Users\StevenNathaniel\AppData\Local\Temp"
+
+        Dim dAdapter1 As OdbcDataAdapter = New OdbcDataAdapter("SELECT * FROM Pegawai", koneksi)
+
+        dAdapter1.Fill(myData1)
+
+
+        For i As Integer = 0 To myData1.Tables(0).Rows.Count - 1
+
+            idPegawai1 = myData1.Tables(0).Rows(i)(0).ToString
+
+            Dim dAdapter2 As OdbcDataAdapter = New OdbcDataAdapter("SELECT * FROM pegawai WHERE idpegawai='" + idPegawai1 + "'", koneksi)
+
+            dAdapter2.Fill(myData2)
+
+            myData2.WriteXml(path & "\" & idPegawai1 & ".xml", XmlWriteMode.WriteSchema)
+
+            Console.WriteLine("Berhasil Tulis Data Ke File XML")
+
+            Console.WriteLine()
+
+            myData2.Clear()
+
+        Next
+
+    End Sub
+End Class
+```
+
